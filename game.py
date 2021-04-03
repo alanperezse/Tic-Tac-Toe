@@ -77,6 +77,9 @@ def play(game, x_player, o_player, print_game = True):
             if print_game:
                 print(letter + f' makes a move to {square}')
 
+                # Wait
+                time.sleep(.4)
+
             # Print board
             if print_game:
                 game.print_board()
@@ -95,25 +98,42 @@ def play(game, x_player, o_player, print_game = True):
 
         # Wait before asking for next input
         if print_game:
-            time.sleep(1.5)
+            time.sleep(.8)
 
     # Tie
     return None
 
 
 if __name__ == '__main__':
-    p1 = input('Press (h) for human, (m) for machine. Player 1 will be:')
-    p2 = input('Press (h) for human, (m) for machine. Player 2 will be:')
+    while True:
+        p1 = input('Press (h) for human, (m) for machine. Player 1 will be:')
+        p1 = p1.upper()
+        if p1 == 'H' or p1 == 'M':
+            break
+        else:
+            print('Invalid input. Please try again.\n')
+
     print()
 
-    player1 = HumanPlayer('X') if p1 == 'h' else GeniusComputerPlayer('X')
-    player2 = HumanPlayer('O') if p2 == 'h' else GeniusComputerPlayer('O')
+    while True:
+        p2 = input('Press (h) for human, (m) for machine. Player 2 will be:')
+        p2 = p2.upper()
+        if p2 == 'H' or p2 == 'M':
+            break
+        else:
+            print('Invalid input. Please try again.\n')
+
+    print()
+
+    player1 = HumanPlayer('X') if p1 == 'H' else GeniusComputerPlayer('X')
+    player2 = HumanPlayer('O') if p2 == 'H' else GeniusComputerPlayer('O')
 
     t = TicTacToe()
 
     winner = play(t, player1, player2)
 
     t.print_board()
+    print()
 
     if winner == 'X' or winner == 'O':
         print(winner + ' player is the winner!!!')

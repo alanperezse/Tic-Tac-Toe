@@ -1,6 +1,5 @@
 import math
 import random
-import time
 
 
 class Player:
@@ -36,7 +35,7 @@ class HumanPlayer(Player):
                 # Type cast
                 square = int(square)
 
-                # If not valiid move
+                # If not valid move
                 if square not in game.available_moves():
                     raise ValueError
                 break
